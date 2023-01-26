@@ -28,7 +28,6 @@ class Controller extends BaseController
             'limit'       => 'nullable|integer',
             'filter'      => 'nullable|array',
             'filter.*'    => 'required_with:filter|string',
-            'location'    => 'required_without:latitude|required_without:longitude',
             'latitude'    => 'nullable|required_with:longitude|latitude',
             'longitude'   => 'nullable|required_with:latitude|longitude',
             'radius'      => 'nullable|min:0|max:40000'
