@@ -1,0 +1,63 @@
+grumphp:
+    process_timeout: 300
+    hide_circumvention_tip: true
+
+    fixer:
+        enabled: true
+        fix_by_default: true
+
+    stop_on_failure: false
+
+    tasks:
+        composer: ~
+
+        git_blacklist:
+            keywords:
+                - ' dd('
+                - 'dump('
+            whitelist_patterns:
+              - /^app\/(.*)/
+              - /^bootstrap\/(.*)/
+              - /^config\/(.*)/
+              - /^routes\/(.*)/
+
+        git_blacklist2:
+            keywords:
+                - 'die;'
+                - 'exit;'
+            metadata:
+                task: git_blacklist
+
+        phpcs:
+            standard: PSR12
+            whitelist_patterns:
+              - /^app\/(.*)/
+              - /^bootstrap\/(.*)/
+              - /^config\/(.*)/
+              - /^database\/(.*)/
+              - /^routes\/(.*)/
+              - /^test\/(.*)/
+            exclude:
+              - Generic.Files.LineLength
+
+        phplint:
+            exclude: []
+            jobs: ~
+            short_open_tag: false
+            ignore_patterns:
+              - /^app\/(.*)/
+              - /^bootstrap\/(.*)/
+              - /^config\/(.*)/
+              - /^database\/(.*)/
+              - /^routes\/(.*)/
+              - /^test\/(.*)/
+            triggered_by: ['php']
+
+        phpcsfixer:
+            allow_risky: false
+            config: '.php-cs-fixer.php'
+            using_cache: false
+            config_contains_finder: true
+            verbose: true
+            diff: false
+            triggered_by: ['php']
