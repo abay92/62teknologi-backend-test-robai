@@ -24,7 +24,7 @@ class Controller extends BaseController
             'term'        => 'nullable|string',
             'sort_column' => 'nullable|string|in:' . join(',', $data),
             'sort_type'   => 'nullable|in:asc,desc',
-            'offset'      => 'nullable|integer',
+            'page'        => 'nullable|integer',
             'limit'       => 'nullable|integer',
             'filter'      => 'nullable|array',
             'filter.*'    => 'required_with:filter|string',

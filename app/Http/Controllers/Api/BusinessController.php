@@ -143,7 +143,6 @@ class BusinessController extends Controller
         $perPage = (int) $request->limit;
         $perPage = $perPage ? $perPage : $this->default_limit;
         $query = $query->groupBy('businesses.id')->paginate($perPage);
-        $query->setPageName('offset');
         $collection = BusinessResource::collection($query)->response()->getData(true);
         $collection['region'] = [
             'center' => [
@@ -278,18 +277,18 @@ class BusinessController extends Controller
 
     public function getLatLong()
     {
-        $ip = request()->ip();
-        $location = Location::get($ip);
+        // $ip = request()->ip();
+        // $location = Location::get($ip);
 
         $userLatitude = 0;
         $userLongitude = 0;
         $is_lat_long = false;
 
-        if ($location) {
-            $is_lat_long = true;
-            $userLatitude = $location->latitude;
-            $userLongitude = $location->longitude;
-        }
+        // if ($location) {
+        //     $is_lat_long = true;
+        //     $userLatitude = $location->latitude;
+        //     $userLongitude = $location->longitude;
+        // }
 
         return [
             'is_lat_long' => $is_lat_long,

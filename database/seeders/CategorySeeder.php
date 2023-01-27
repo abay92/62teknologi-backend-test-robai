@@ -27,7 +27,7 @@ class CategorySeeder extends Seeder
             ]);
 
             $faker = Faker::create();
-            for ($i = 1; $i <= 50; $i++) {
+            for ($i = 1; $i <= 20; $i++) {
                 $title = $faker->unique()->word;
 
                 if ($i % 2 == 0) {
